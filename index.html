@@ -19,8 +19,8 @@
     <nav class="bg-green-100 p-3 px-10 flex items-center justify-between shadow-2xl sticky top-0 z-10">
         <h1 class="text-3xl font-bold">Greenden</h1>
 
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-            class="size-6 w-5  md:hidden">
+        <svg id="menu_icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="size-6 w-5 md:hidden cursor-pointer">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
 
@@ -39,6 +39,48 @@
         </ul>
 
     </nav>
+
+    <!-- responsive side navbar -->
+
+    <ul class="flex gap-10 pt-4 text-black-500 flex-col bg-green-200 z-30 top-0 items-center transition-all duration-1000"
+        style="width: 50%; height: 100vh; position: fixed; right: -50%;" id="side_nav">
+
+        <div id="close_icon" class="pl-40 text-2xl font-bold">
+            <p class="cursor-pointer border border-transparent hover:border-black border-solid inline-block px-2 py-1 rounded"> x </p>
+        </div>
+        <li>
+            <a class="hover:underline hover:text-black" href="index.html">Home</a>
+        </li>
+
+        <li>
+            <a class="hover:underline hover:text-black" href="product.html">Products</a>
+        </li>
+
+        <li>
+            <a class="hover:underline hover:text-black" href="contact.html">Contact</a>
+        </li>
+    </ul>
+
+    </nav>
+
+
+    <!-- Side nav Using JS -->
+
+    <script>
+
+        var menu_icon = document.getElementById("menu_icon")
+        var close_icon = document.getElementById("close_icon")
+        var side_nav = document.getElementById("side_nav")
+
+        menu_icon.addEventListener("click", function () {
+            side_nav.style.right = 0
+        })
+
+        close_icon.addEventListener("click", function () {
+            side_nav.style.right = "-50%"
+        })
+
+    </script>
 
     <!-- header section -->
 
@@ -62,7 +104,7 @@
         <h1 class="text-2xl font-bold">About Us</h1>
         <p>The site for those who admire the beauty and harmony of nature</p>
     </div>
- 
+
 
     <section class="flex flex-col gap-10">
         <div class=" text-center justify-around p-5  md:flex flex-row">

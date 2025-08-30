@@ -12,13 +12,13 @@
 </head>
 <body>
 
-    <!-- Navbar Section  -->
-     
+        <!-- responsive navbar -->
+
     <nav class="bg-green-100 p-3 px-10 flex items-center justify-between shadow-2xl sticky top-0 z-10">
         <h1 class="text-3xl font-bold">Greenden</h1>
 
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-            class="size-6 w-5  md:hidden">
+        <svg id="menu_icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="size-6 w-5 md:hidden cursor-pointer">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
 
@@ -37,16 +37,59 @@
         </ul>
 
     </nav>
+
+    <!-- responsive side navbar -->
+
+    <ul class="flex gap-10 pt-4 text-black-500 flex-col bg-green-200 z-30 top-0 items-center transition-all duration-1000"
+        style="width: 50%; height: 100vh; position: fixed; right: -50%;" id="side_nav">
+
+        <div id="close_icon" class="pl-40 text-2xl font-bold">
+            <p class="cursor-pointer border border-transparent hover:border-black border-solid inline-block px-2 py-1 rounded"> x </p>
+        </div>
+        <li>
+            <a class="hover:underline hover:text-black" href="index.html">Home</a>
+        </li>
+
+        <li>
+            <a class="hover:underline hover:text-black" href="product.html">Products</a>
+        </li>
+
+        <li>
+            <a class="hover:underline hover:text-black" href="contact.html">Contact</a>
+        </li>
+    </ul>
+
+    </nav>
+
+
+    <!-- Side nav Using JS -->
+
+    <script>
+
+        var menu_icon = document.getElementById("menu_icon")
+        var close_icon = document.getElementById("close_icon")
+        var side_nav = document.getElementById("side_nav")
+
+        menu_icon.addEventListener("click", function () {
+            side_nav.style.right = 0
+        })
+
+        close_icon.addEventListener("click", function () {
+            side_nav.style.right = "-50%"
+        })
+
+    </script>
+
     
     <!-- product section  -->
 
     <section class="text-center p-4">
         <div class="p-4 ">
          <h1 class="text-3xl font-bold">Our products</h1>
-        <input class="p-2 mt-7 border border-black" style="width: 70%;" type="text" placeholder="Search for a product">
+        <input id="search" class="p-2 mt-7 border border-black" style="width: 70%;" type="text" placeholder="Search for a product">
         </div>
         <h1 class="text-2xl font-bold mb-10">Best seller</h1>
-        <div class=" gap-3 grid grid-cols-2 md:grid-cols-4">
+        <div id="product_container" class=" gap-3 grid grid-cols-2 md:grid-cols-4">
             <div class="">
                 <img class="inline transform hover:shadow-2xl hover:-translate-y-2" src="./images/i2.png" alt="">
                 <p>Rose plant</p>
@@ -107,6 +150,32 @@
         </div>
     </section>
 
+    <script>
+
+        var search = document.getElementById("search")
+        var product_container = document.getElementById("product_container")
+        var product_list = product_container.querySelectorAll("div")
+
+        search.addEventListener("keyup",function(){
+
+            var enteredvalue = event.target.value.toUpperCase()
+
+            for(i=0; i<product_list.length; i++){
+
+                var product_name = product_list[i].querySelector("p").textContent
+
+                if(product_name.toUpperCase().indexOf(enteredvalue) !== -1){
+                    product_list[i].style.display="block"
+                }
+
+                else{
+                    product_list[i].style.display="none"
+                }
+            }
+        })
+
+
+    </script>
 
 </body>
 </html>
